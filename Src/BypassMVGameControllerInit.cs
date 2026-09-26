@@ -3,7 +3,7 @@ Why the fuck do you wanna emulate a game when you can buy a Photon service ? :cl
 Shoutout to every professional developer on this game. I do have a serious question though.
 Why is it that you ARE STILL paying for networking your own game ? This is a dumb concept to be honest- If you made the game, you shall know all the aspects of it from A to Z. Instead of having someone to Reverse engineer your GAME and have to struggle with all shit at once, this was more of a personal fun project and I don't really care about making it playable at all, my drive was to learn more about networking and server emulating which I did and the difficulty is fucking beyond basic game development, I do not plan to stick to this shit for long, it costed me 3 months (2 months respectively wasted on the IL2CPP build that never worked in the first place due to Anti-Cheat Toolkits on the client (Which is still bypassable but I won't bother much) )
 
-I'd also like to say many thanks to those who backed me up with lots of resources on information to at least progress this far, with the most of my gratitude returning to Zode (The greatest source of logic one coul have. Tee-Hee) 
+I'd also like to say many thanks to those who backed me up with lots of resources on information to at least progress this far, with the most of my gratitude returning to Zode (The greatest source of logic one could have. Tee-Hee) 
 */
 
 using System;
@@ -740,7 +740,9 @@ private static void TryInjectKoGaMaSettings()
                         var userProfileData = MV.WorldObject.MetaData.UserProfileData.GetTouristProfileData("MarshZee");
                         userProfileData.Gold = 99999;
                         returnValues[224] = Newtonsoft.Json.JsonConvert.SerializeObject(userProfileData);
-
+                        // Invoke parameters
+                        // Note to self if one day I return to this project:
+                        // OnJoinResponse(Dictionary<byte, object>) -> pass returnValues as object[] (This will be useful at some point in general cases)
                         var onJoinResponseMethod = AccessTools.Method(typeof(MVNetworkGame), "OnJoinResponse", new[] { typeof(Dictionary<byte, object>) });
                         if (onJoinResponseMethod is object)
                         {
